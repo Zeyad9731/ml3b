@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#08110f">
+  <title>مَلْعَبْنَا | إحصائيات الشلة</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
+  <div class="app-shell">
+    <button class="mobile-menu-toggle" type="button" aria-label="فتح القائمة" aria-expanded="false" onclick="toggleMobileMenu()">☰ <span>القائمة</span></button>
+    <div class="mobile-menu-backdrop" onclick="closeMobileMenu()" aria-hidden="true"></div>
+    <aside class="sidebar" id="siteSidebar">
+      <a class="brand" href="#home" onclick="showPage('home');return false">
+        <span class="brand-mark"><span></span><span></span><span></span></span>
+        <span><b>مَلْعَبْنَا</b><small>YOUR CREW. YOUR GAME.</small></span>
+      </a>
+      <div class="side-label">القائمة الرئيسية</div>
+      <button class="nav-item active" data-page="home" onclick="showPage('home')"><span class="nav-icon">⌂</span><span>الرئيسية</span></button>
+      <button class="nav-item" data-page="players" onclick="showPage('players')"><span class="nav-icon">♙</span><span>اللاعبون</span><em id="sideCount">25</em></button>
+      <button class="nav-item" data-page="bookings" onclick="showPage('bookings')"><span class="nav-icon">▤</span><span>إحصائيات الحجوزات</span></button>
+      
+
+
+      <div class="sidebar-bottom"><div class="mini-pitch"><div class="pitch-circle"></div><div class="pitch-line"></div><div class="pitch-caption">EVERY MATCH<br><strong>COUNTS.</strong></div></div><div class="side-foot"><span class="live-dot"></span> إحصائيات الشلة <span class="side-foot-muted">• 2026</span></div></div>
+    </aside>
+    <main class="main">
+      <header class="topbar"><div class="mobile-brand">مَلْعَبْنَا <span>●</span></div><div class="breadcrumb"><span>الموسم الحالي</span><b>/</b><strong id="crumbTitle">الرئيسية</strong></div><div class="top-actions"><div class="season-pill"><span class="live-dot"></span> SEASON 01</div><span class="view-only">عرض فقط 🔒</span></div></header>
+      <section class="page active" id="homePage">
+        <div class="hero"><div class="hero-copy">
+          <div class="eyebrow"><span class="eyebrow-line"></span> ملعب واحد • ذكريات لا تنتهي</div>
+          <h1>اللعب حلو…<br><span>والأرقام بتحكي.</span></h1><p>كل جون له حكاية، وكل أسيست له صاحبه. هنا بنوثّق كل ماتش ونشوف مين نجم الشلة.</p><div class="hero-buttons"><button class="primary-btn" onclick="showPage('players')">استكشف اللاعبين <span>←</span></button><button class="ghost-btn" onclick="showPage('bookings'); currentBooking=1;renderBooking();">شوف الحجوزات ↗</button></div></div><div class="hero-art" aria-hidden="true"><div class="orbit orbit-a"></div><div class="orbit orbit-b"></div><div class="big-ball">⚽</div><div class="art-tag tag-top"><span>✦</span> MATCH DAY</div><div class="art-tag tag-bottom"><b>90'</b><span>وقت الحماس</span></div><div class="art-number">01</div></div><div class="hero-stripe"></div></div>
+        <div class="section-heading"><div><span class="section-kicker">نظرة سريعة</span><h2>أرقام الشلة <span class="green-dot">●</span></h2></div><span class="subtle">الأرقام بتتحدّث من بيانات الكود</span></div>
+        <div class="stat-grid"><article class="stat-card"><div class="stat-top"><span class="stat-icon green">♙</span><span class="stat-label">إجمالي اللاعبين</span><span class="stat-arrow">↗</span></div><strong id="homePlayers">25</strong><div class="stat-foot"><span class="tiny-bar"></span> نجوم الملعب</div></article><article class="stat-card"><div class="stat-top"><span class="stat-icon orange">⚽</span><span class="stat-label">إجمالي الأهداف</span><span class="stat-arrow">↗</span></div><strong id="homeGoals">0</strong><div class="stat-foot"><span class="tiny-bar orange-bar"></span> كل هدف محسوب</div></article><article class="stat-card"><div class="stat-top"><span class="stat-icon blue">✦</span><span class="stat-label">إجمالي الأسيستات</span><span class="stat-arrow">↗</span></div><strong id="homeAssists">0</strong><div class="stat-foot"><span class="tiny-bar blue-bar"></span> صناعة الفرق</div></article><article class="stat-card"><div class="stat-top"><span class="stat-icon purple">▤</span><span class="stat-label">عدد الحجوزات</span><span class="stat-arrow">↗</span></div><strong id="homeBookings">1</strong><div class="stat-foot"><span class="tiny-bar purple-bar"></span> ماتشات موثّقة</div></article></div>
+        <div class="home-lower"><div class="feature-panel"><div class="panel-title"><div><span class="section-kicker">THE TOP PLAYER</span><h3>متصدر الهدافين</h3></div><span class="crown">♛</span></div><div id="topScorerHome" class="top-player"></div><div class="panel-divider"></div><div class="panel-bottom"><span>الترتيب بيتحدّث تلقائيًا</span><button onclick="showPage('players')">عرض الترتيب <b>←</b></button></div></div><div class="quote-panel"><div class="quote-mark">“</div><p>النتيجة بتخلص،<br><strong>بس التاريخ بيفضل.</strong></p><span>— قوانين الملعب</span><div class="quote-ball">⚽</div></div></div>
+        <footer class="footer"><span>صُنع للشلة، مش للبطولات بس.</span><span>مَلْعَبْنَا <b>×</b> 2026</span></footer>
+      </section>
+      <section class="page" id="playersPage">
+        <div class="page-head"><div><div class="eyebrow"><span class="eyebrow-line"></span> THE SQUAD</div><h1>قائمة <span>اللاعبين</span></h1><p>كل لاعب له أرقامه ومكانه في تاريخ الشلة.</p></div><div class="search-box">⌕ <input id="playerSearch" placeholder="دوّر على لاعب..." oninput="renderPlayers()"></div></div>
+        <div class="leader-strip"><div class="leader-icon">♛</div><div><b>الملعب للأرقام</b><span>علامات الهداف وصانع اللعب بتتحدّث تلقائيًا</span></div><div class="leader-key"><span class="gold-dot"></span> الأكثر تسجيلاً <span class="blue-dot"></span> الأكثر صناعة</div></div>
+        <div class="table-wrap"><table class="players-table"><thead><tr><th class="rank-col">#</th><th>اللاعب</th><th>المباريات</th><th>الأهداف ⚽</th><th>الأسيستات ✦</th><th>لاعب الحجز</th><th>معدل التسجيل</th></tr></thead><tbody id="playersBody"></tbody></table></div>
+        <div class="table-note"><span><i class="live-dot"></i> <b id="shownCount">25</b> لاعب في القائمة</span><span>عرض فقط • التعديل من ملف app.js</span></div>
+        <footer class="footer"><span>صُنع للشلة، مش للبطولات بس.</span><span>مَلْعَبْنَا <b>×</b> 2026</span></footer>
+      </section>
+      <section class="page" id="bookingsPage">
+        <div class="page-head"><div><div class="eyebrow"><span class="eyebrow-line"></span> MATCH ARCHIVE</div><h1>أرشيف <span>الحجوزات</span></h1><p>كل حجز صفحة جديدة في تاريخ الشلة — من غير ما نلمس القديم.</p></div></div>
+<div class="booking-switcher">
+  <button class="switch-arrow" onclick="moveBooking(1)" aria-label="الحجز التالي">→</button>
+
+  <div class="booking-title">
+    <span class="section-kicker">MATCH ARCHIVE</span>
+    <h2 id="bookingTitle">الحجز رقم 01</h2>
+    <p id="bookingSubtitle">تفاصيل الماتش وإحصائياته</p>
+  </div>
+
+  <button class="switch-arrow" onclick="moveBooking(-1)" aria-label="الحجز السابق">←</button>
+
+  <div class="booking-counter" id="bookingCounter">01 <span>/ 02</span></div>
+</div>
+        <div class="booking-metrics"><div><span>عدد اللاعبين</span><b id="bookingPlayers">0 <small>/ 15</small></b></div><div><span>الأهداف في الحجز</span><b id="bookingGoals">0</b></div><div><span>الأسيستات في الحجز</span><b id="bookingAssists">0</b></div><div><span>لاعب الحجز</span><b id="bookingSpecial">—</b></div></div>
+       
+<div class="booking-awards">
+
+  <div class="award-card award-best">
+    <span class="award-icon">🏆</span>
+    <span class="award-title">أفضل لاعب</span>
+    <strong class="award-winner">عبدالملك</strong>
+  </div>
+
+  <div class="award-card award-goals">
+    <span class="award-icon">⚽</span>
+    <span class="award-title">هداف الحجز</span>
+    <strong class="award-winner">عبدالملك</strong>
+  </div>
+
+  <div class="award-card award-assists">
+    <span class="award-icon">🎯</span>
+    <span class="award-title">الأكثر صناعة</span>
+    <strong class="award-winner">عبدالملك</strong>
+  </div>
+
+</div>
+
+        <div class="table-wrap booking-table-wrap"><table class="players-table booking-table"><thead><tr><th class="rank-col">#</th><th>اسم اللاعب</th><th>الأهداف ⚽</th><th>الأسيستات ✦</th><th>لاعب الحجز</th></tr></thead><tbody id="bookingBody"></tbody></table></div>
+        <div class="booking-bottom"><span>✦ بيانات الحجوزات بتتعدل من ملف app.js.</span><span>الموقع للعرض فقط.</span></div><footer class="footer"><span>صُنع للشلة، مش للبطولات بس.</span><span>مَلْعَبْنَا <b>×</b> 2026</span></footer>
+      </section>
+      
+
+    </main>
+  </div>
+  <script src="app.js"></script>
+
+  
+<!-- بطاقة اللاعب -->
+<div id="playerModal" class="player-modal" hidden>
+  <div class="player-card">
+
+    <button class="player-back" onclick="closePlayerCard()">
+      ← رجوع
+    </button>
+
+    <div class="player-header">
+      <img id="profilePhoto" src="" alt="صورة اللاعب">
+
+      <div>
+        <h2 id="profileName">اسم اللاعب</h2>
+        <p id="profileRank">ترتيب اللاعب</p>
+      </div>
+    </div>
+
+    <div class="player-stats">
+      <div>
+        <strong id="profileGoals">0</strong>
+        <span>الأهداف</span>
+      </div>
+
+      <div>
+        <strong id="profileAssists">0</strong>
+        <span>الأسيستات</span>
+      </div>
+
+      <div>
+        <strong id="profileAwards">0</strong>
+        <span>الجوائز</span>
+      </div>
+    </div>
+
+    <details class="booking-details">
+      <summary>
+        إحصائيات الحجوزات
+        <span>⌄</span>
+      </summary>
+
+      <div id="profileBookings"></div>
+    </details>
+
+    <section class="profile-section">
+      <h3>إنجازات اللاعب 🏆</h3>
+      <div id="profileAchievements"></div>
+    </section>
+
+    <section class="profile-section">
+      <h3>معلومات اللاعب</h3>
+      <div id="profileInfo"></div>
+    </section>
+
+  </div>
+</div>
+
+
+</body>
+
+</html>
